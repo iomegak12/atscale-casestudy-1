@@ -1,0 +1,5 @@
+mkdir data
+
+docker run -t -d -e POSTGRES_USER=training -e POSTGRES_PASSWORD=test123 -p 5432:5432 -v ./data:/var/lib/postgresql/data --name postgresql postgres
+
+docker run --name pgadmin-training -p 5051:80 -e "PGADMIN_DEFAULT_EMAIL=ramkumar@palmeto.in" -e "PGADMIN_DEFAULT_PASSWORD=test123" -t -d dpage/pgadmin4
