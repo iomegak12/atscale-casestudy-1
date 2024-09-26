@@ -1,0 +1,40 @@
+WITH StoreDetails AS (
+  SELECT S.StoreID, S.StoreName, L.City AS StoreCity, L.State AS StoreState, L.Country AS StoreCountry
+  FROM `atscale-project.ramkumar_ds`.Stores S
+  JOIN `atscale-project.ramkumar_ds`.Locations L ON L.LocationID = S.LocationID
+)
+SELECT FS.SaleID, 
+  FS.SaleDate, 
+  FS.Units AS TotalUnits, 
+  FS.SaleAmount AS TotalSalesAmount,
+  `atscale-project.ramkumar_ds`.getCustomerRegion(FS.SaleAmount, 10) AS TaxAmount,
+  CONCAT(C.FName, ' ', C.MName, ' ', C.LName) AS CustomerFullName,
+  L.City AS CustomerCity, 
+  L.State AS CustomerState, 
+  L.Country AS CustomerCountry, 
+  `atscale-project.ramkumar_ds`.getCustomerRegion(L.City) AS CustomerRegion,
+  `atscale-project.ramkumar_ds`.getCustomerType(C.CreditLimit) AS CustomerType, 
+  `atscale-project.ramkumar_ds`.getCustomerStatus(C.ActiveStatus) AS CustomerStatus,
+  S.StoreName,
+  S.StoreCity,
+  S.StoreState,
+  S.StoreCountry,
+  P.Name AS Product, 
+  P.Color AS ProductColor, 
+  P.Size AS ProductSize,
+  PS.ProductSubcategoryName AS ProductSubcategory,
+  PC.ProductCategoryName AS ProductCategory,
+  SR.SalesReasonName AS Reason, 
+  SR.SalesReasonType AS ReasonType,
+  CONCAT(E.FName, ' ', E.MName, ' ', E.LName) AS EmployeeFullName
+FROM `atscale-project.ramkumar_ds`.FactSales FS
+JOIN `atscale-project.ramkumar_ds`.Employees E ON E.EmployeeID = FS.EmployeeID
+JOIN `atscale-project.ramkumar_ds`.Time T ON T.DateID = FS.SaleDate
+JOIN `atscale-project.ramkumar_ds`.Customers C ON C.CustomerID = FS.CustomerID
+JOIN `atscale-project.ramkumar_ds`.Locations L ON C.LocationID = L.LocationID
+JOIN StoreDetails S ON S.StoreID = FS.StoreID
+JOIN `atscale-project.ramkumar_ds`.Products P ON P.ProductID = FS.ProductID
+JOIN `atscale-project.ramkumar_ds`.ProductSubcategories PS ON PS.ProductSubcategoryID = P.ProductSubcategoryID
+JOIN `atscale-project.ramkumar_ds`.ProductCategories PC ON PC.ProductCategoryID = PS.ProductCategoryID
+JOIN `atscale-project.ramkumar_ds`.SalesReasons SR ON SR.SalesReasonID = FS.SalesReasonID
+LIMIT 10;

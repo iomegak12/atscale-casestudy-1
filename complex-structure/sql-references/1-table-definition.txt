@@ -1,0 +1,119 @@
+CREATE TABLE IF NOT EXISTS `atscale-project.ramkumar_ds.Customers`
+(
+  CustomerID INT,
+  FName STRING,
+  MName STRING,
+  LName STRING,
+  LocationID INT,
+  CreditLimit INT,
+  ActiveStatus BOOLEAN
+);
+
+CREATE TABLE IF NOT EXISTS `atscale-project.ramkumar_ds.FactSales`
+(
+  SaleID STRING,
+  SaleDate INT,
+  CustomerID INT,
+  EmployeeID INT,
+  StoreID INT,
+  ProductID INT,
+  Units INT,
+  SaleAmount INT,
+  SalesReasonID INT,
+  ProductCost INT
+);
+
+CREATE TABLE IF NOT EXISTS `atscale-project.ramkumar_ds.Locations`
+(
+  LocationID INT,
+  AddressLine1 STRING,
+  AddressLine2 STRING,
+  City STRING,
+  State STRING,
+  Country STRING,
+  Zip STRING
+);
+
+CREATE TABLE `atscale-project.ramkumar_ds.ProductCategories`
+(
+  ProductCategoryID INT,
+  ProductCategoryName STRING
+);
+
+CREATE TABLE IF NOT EXISTS `atscale-project.ramkumar_ds.Products`
+(
+  ProductID INT,
+  Name STRING,
+  ProductNumber STRING,
+  ProductSubcategoryID INT,
+  Color STRING,
+  Size STRING,
+  StockLevel INT,
+  Supplier STRING
+);
+
+CREATE TABLE IF NOT EXISTS `atscale-project.ramkumar_ds.ProductSubcategories`
+(
+  ProductSubcategoryID INT,
+  ProductCategoryID INT,
+  ProductSubcategoryName STRING
+);
+
+CREATE TABLE IF NOT EXISTS `atscale-project.ramkumar_ds.SalesReasons`
+(
+  SalesReasonID INT,
+  SalesReasonName STRING,
+  SalesReasonType STRING
+);
+
+CREATE TABLE IF NOT EXISTS `atscale-project.ramkumar_ds.Stores`
+(
+  StoreID INT,
+  StoreName STRING,
+  StoreManagerID INT,
+  LocationID INT
+);
+
+CREATE TABLE IF NOT EXISTS `atscale-project.ramkumar_ds.Time`
+(
+  DateId INT,
+  PK_Date TIMESTAMP,
+  Date_Name STRING,
+  Year STRING,
+  Year_Name STRING,
+  Half_Year STRING,
+  Half_Year_Name STRING,
+  Quarter STRING,
+  Quarter_Name STRING,
+  Month STRING,
+  Month_Name STRING,
+  Day_Of_Year STRING,
+  Day_Of_Year_Name STRING,
+  Day_Of_Half_Year STRING,
+  Day_Of_Half_Year_Name STRING,
+  Day_Of_Quarter STRING,
+  Day_Of_Quarter_Name STRING,
+  Day_Of_Month STRING,
+  Day_Of_Month_Name STRING,
+  Month_Of_Year STRING,
+  Month_Of_Year_Name STRING,
+  Month_Of_Half_Year STRING,
+  Month_Of_Half_Year_Name STRING,
+  Month_Of_Quarter STRING,
+  Month_Of_Quarter_Name STRING,
+  Quarter_Of_Year STRING,
+  Quarter_Of_Year_Name STRING,
+  Quarter_Of_Half_Year STRING,
+  Quarter_Of_Half_Year_Name STRING,
+  Half_Year_Of_Year STRING,
+  Half_Year_Of_Year_Name STRING
+);
+
+CREATE TABLE IF NOT EXISTS `atscale-project.ramkumar_ds.Employees`
+(
+  EmployeeID INT,
+  FName STRING,
+  MName STRING,
+  LName STRING,
+  ManagerID INT
+);

@@ -1,0 +1,10 @@
+CREATE FUNCTION IF NOT EXISTS `atscale-project.ramkumar_ds`.calculateTax(orderAmount INTEGER, taxPercentage INTEGER)
+RETURNS INTEGER
+AS
+(
+  (
+    SELECT CAST((orderAmount * taxPercentage * 0.01) AS INTEGER)
+  )
+);
+
+SELECT `atscale-project.ramkumar_ds`.calculateTax(100, 10);

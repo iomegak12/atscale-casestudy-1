@@ -1,4 +1,4 @@
-Sale Id,Sales Date,Customer Id,Employee Id,Store Id,Product Id,No. Of Units,Sale Amount,Sales Reason ID,Product Cost
+SaleId,SalesDate,CustomerId,EmployeeId,StoreId,ProductId,NoOfUnits,SaleAmount,SalesReasonID,ProductCost
 AX1,288,370,42,8,167,106,3122,1,3033
 AX2,1328,317,88,35,394,298,4901,7,4518
 AX3,552,183,61,62,85,375,1469,10,1418

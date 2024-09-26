@@ -1,0 +1,42 @@
+CREATE FUNCTION `atscale-project.ramkumar_ds`.getCustomerRegion(city STRING)
+RETURNS STRING
+LANGUAGE js
+OPTIONS
+(
+  library = ['gs://training-purposes/js-functions/customer-functions.js']
+)
+AS r"""
+  return getCustomerRegion(city);
+""";
+
+CREATE FUNCTION `atscale-project.ramkumar_ds`.getCustomerType(creditLimit INTEGER)
+RETURNS STRING
+LANGUAGE js
+OPTIONS
+(
+  library = ['gs://training-purposes/js-functions/customer-functions.js']
+)
+AS r"""
+  return getCustomerType(creditLimit);
+""";
+
+CREATE FUNCTION `atscale-project.ramkumar_ds`.getCustomerStatus(status BOOL)
+RETURNS STRING
+LANGUAGE js
+OPTIONS
+(
+  library = ['gs://training-purposes/js-functions/customer-functions.js']
+)
+AS r"""
+  return getCustomerStatus(status);
+""";
+
+SELECT `atscale-project.ramkumar_ds`.getCustomerStatus(true);
+
+SELECT `atscale-project.ramkumar_ds`.getCustomerType(12000);
+
+SELECT `atscale-project.ramkumar_ds`.getCustomerRegion("Mumbai");
+
+
+
+

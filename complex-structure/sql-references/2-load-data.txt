@@ -1,0 +1,251 @@
+-- Customers
+
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_customers`
+FROM FILES ( skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://training-purposes/customers/*.csv'] );
+	
+INSERT INTO `atscale-project.ramkumar_ds.Customers`
+SELECT * FROM `atscale-project.ramkumar_ds.staging_customers`;
+
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.Customers`;
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.staging_customers`;
+
+-- Employees
+
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_employees`
+FROM FILES ( skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://training-purposes/employees/*.csv'] );
+	
+INSERT INTO `atscale-project.ramkumar_ds.Employees`
+SELECT * FROM `atscale-project.ramkumar_ds.staging_employees`;
+
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.Employees`;
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.staging_employees`;
+
+-- Locations
+
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_locations`
+FROM FILES ( skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://training-purposes/geography/*.csv'] );
+	
+INSERT INTO `atscale-project.ramkumar_ds.Locations`
+SELECT * FROM `atscale-project.ramkumar_ds.staging_locations`;
+
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.Locations`;
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.staging_locations`;
+
+-- Products
+
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_products`
+FROM FILES ( skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://training-purposes/products/Products*.csv'] );
+	
+INSERT INTO `atscale-project.ramkumar_ds.Products`
+SELECT ProductID, Name, ProductNumber, `Product Subcategory ID`, Color, Size, `Stock Level`, 
+	CAST(SPLIT(Supplier,' ')[OFFSET(1)] AS INTEGER) AS Supplier
+ FROM `atscale-project.ramkumar_ds.staging_products`;
+
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.Products`;
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.staging_products`;
+
+
+-- Product Subcategories 
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_productsubcategories`
+FROM FILES ( skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://training-purposes/products/ProductSubcategories*.csv'] );
+	
+INSERT INTO `atscale-project.ramkumar_ds.ProductSubcategories`
+SELECT * FROM `atscale-project.ramkumar_ds.staging_productsubcategories`;
+
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.ProductSubcategories`;
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.staging_productsubcategories`;
+
+
+-- Product Categories 
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_productcategories`
+FROM FILES ( skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://training-purposes/products/ProductCategories*.csv'] );
+	
+INSERT INTO `atscale-project.ramkumar_ds.ProductCategories`
+SELECT * FROM `atscale-project.ramkumar_ds.staging_productcategories`;
+
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.ProductCategories`;
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.staging_productcategories`;
+
+-- Sales Reasons
+
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_salesregions`
+FROM FILES ( skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://training-purposes/sales-reasons/*.csv'] );
+	
+INSERT INTO `atscale-project.ramkumar_ds.SalesReasons`
+SELECT * FROM `atscale-project.ramkumar_ds.staging_salesregions`;
+
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.SalesReasons`;
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.staging_salesregions`;
+
+-- Stores
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_stores`
+FROM FILES ( skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://training-purposes/stores/*.csv'] );
+	
+INSERT INTO `atscale-project.ramkumar_ds.Stores`
+SELECT * FROM `atscale-project.ramkumar_ds.staging_stores`;
+
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.Stores`;
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.staging_stores`;
+
+-- Time
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_time`
+FROM FILES ( skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://training-purposes/time/*.csv'] );
+	
+INSERT INTO `atscale-project.ramkumar_ds.Time`
+SELECT DateId,
+PK_Date,
+Date_Name,
+CAST(Year AS STRING),
+Year_Name,
+CAST(Half_Year AS STRING),
+Half_Year_Name,
+CAST(Quarter AS STRING),
+Quarter_Name,
+CAST(Month AS STRING),
+Month_Name,
+CAST(Day_Of_Year AS STRING),
+Day_Of_Year_Name,
+CAST(Day_Of_Half_Year AS STRING),
+Day_Of_Half_Year_Name,
+CAST(Day_Of_Quarter AS STRING),
+Day_Of_Quarter_Name,
+CAST(Day_Of_Month AS STRING),
+Day_Of_Month_Name,
+CAST(Month_Of_Year AS STRING),
+Month_Of_Year_Name,
+CAST(Month_Of_Half_Year AS STRING),
+Month_Of_Half_Year_Name,
+CAST(Month_Of_Quarter AS STRING),
+Month_Of_Quarter_Name,
+CAST(Quarter_Of_Year AS STRING),
+Quarter_Of_Year_Name,
+CAST(Quarter_Of_Half_Year AS STRING),
+Quarter_Of_Half_Year_Name,
+CAST(Half_Year_Of_Year AS STRING),
+Half_Year_Of_Year_Name FROM `atscale-project.ramkumar_ds.staging_time`;
+
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.Time`;
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.staging_time`;
+
+-- Fact Sales
+
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_fact_sales_csv`
+FROM FILES ( skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://training-purposes/fact-sales/*.csv'],
+    column_name_character_map = 'V2' );
+  
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_fact_sales_avro`
+FROM FILES ( 
+    format = 'AVRO',
+    uris = ['gs://training-purposes/fact-sales/*.avro']);
+
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_fact_sales_parquet`
+FROM FILES ( 
+    format = 'PARQUET',
+    uris = ['gs://training-purposes/fact-sales/*.parquet'],
+    column_name_character_map = 'V2' );
+
+LOAD DATA INTO
+  `atscale-project.ramkumar_ds.staging_fact_sales_orc`
+FROM FILES ( 
+    format = 'ORC',
+    uris = ['gs://training-purposes/fact-sales/*.orc']);
+
+LOAD DATA OVERWRITE `atscale-project.ramkumar_ds.staging_fact_sales_jsonl`
+FROM FILES (
+  format = 'JSON',
+  uris = ['gs://training-purposes/fact-sales/*.jsonl']);  
+
+INSERT INTO `atscale-project.ramkumar_ds.FactSales`
+SELECT SaleID,
+SalesDate,
+CustomerID,
+EmployeeID,
+StoreID,
+ProductID,
+NoOfUnits,
+SaleAmount,
+SalesReasonID,
+ProductCost FROM `atscale-project.ramkumar_ds.staging_fact_sales_csv`;
+
+INSERT INTO `atscale-project.ramkumar_ds.FactSales`
+SELECT SaleID,
+SalesDate,
+CustomerID,
+EmployeeID,
+StoreID,
+ProductID,
+NoOfUnits,
+SaleAmount,
+SalesReasonID,
+ProductCost FROM `atscale-project.ramkumar_ds.staging_fact_sales_avro`;
+
+
+INSERT INTO `atscale-project.ramkumar_ds.FactSales`
+SELECT SaleID,
+SalesDate,
+CustomerID,
+EmployeeID,
+StoreID,
+ProductID,
+NoOfUnits,
+SaleAmount,
+SalesReasonID,
+ProductCost FROM `atscale-project.ramkumar_ds.staging_fact_sales_parquet`;
+
+INSERT INTO `atscale-project.ramkumar_ds.FactSales`
+SELECT SaleID,
+SalesDate,
+CustomerID,
+EmployeeID,
+StoreID,
+ProductID,
+NoOfUnits,
+SaleAmount,
+SalesReasonID,
+ProductCost FROM `atscale-project.ramkumar_ds.staging_fact_sales_jsonl`;
+
+INSERT INTO `atscale-project.ramkumar_ds.FactSales`
+SELECT SaleID,
+CAST(SalesDate AS INT),
+CAST(CustomerID AS INT),
+CAST(EmployeeID AS INT),
+CAST(StoreID AS INT),
+CAST(ProductID AS INT),
+CAST(NoOfUnits AS INT),
+CAST(SaleAmount AS INT),
+CAST(SalesReasonID AS INT),
+CAST(ProductCost AS INT) FROM `atscale-project.ramkumar_ds.staging_fact_sales_avro`;
+
+SELECT COUNT(*) FROM `atscale-project.ramkumar_ds.FactSales`
