@@ -1,0 +1,131 @@
+CREATE TABLE IF NOT EXISTS training.Customers
+(
+  CustomerID INT,
+  FullName VARCHAR(500),
+  FName VARCHAR(100),
+  MName VARCHAR(100),
+  LName VARCHAR(100),
+  LocationID INT,
+  CreditLimit INT,
+  ActiveStatus BOOLEAN,
+  CustomerStatus VARCHAR(20),
+  CustomerType VARCHAR(20)
+);
+
+CREATE TABLE IF NOT EXISTS training.FactSales
+(
+  SaleID VARCHAR(100),
+  SaleDate INT,
+  CustomerID INT,
+  EmployeeID INT,
+  StoreID INT,
+  ProductID INT,
+  Units INT,
+  SaleAmount INT,
+  SalesReasonID INT,
+  ProductCost INT
+);
+
+CREATE TABLE IF NOT EXISTS training.Locations
+(
+  LocationID INT,
+  AddressLine1 VARCHAR(100),
+  AddressLine2 VARCHAR(100),
+  City VARCHAR(100),
+  State VARCHAR(100),
+  Country VARCHAR(100),
+  Zip VARCHAR(100),
+  Region VARCHAR(100)
+);
+
+
+CREATE TABLE IF NOT EXISTS training.ProductCategories
+(
+  ProductCategoryID INT,
+  ProductCategoryName VARCHAR(100)
+);
+
+
+CREATE TABLE IF NOT EXISTS training.Products
+(
+  ProductID INT,
+  Name VARCHAR(100),
+  ProductNumber VARCHAR(100),
+  ProductSubcategoryID INT,
+  Color VARCHAR(100),
+  Size VARCHAR(100),
+  StockLevel INT,
+  Supplier VARCHAR(100)
+);
+
+
+CREATE TABLE IF NOT EXISTS training.ProductSubcategories
+(
+  ProductSubcategoryID INT,
+  ProductCategoryID INT,
+  ProductSubcategoryName VARCHAR(100)
+);
+
+
+CREATE TABLE IF NOT EXISTS training.SalesReasons
+(
+  SalesReasonID INT,
+  SalesReasonName VARCHAR(100),
+  SalesReasonType VARCHAR(100)
+);
+
+
+CREATE TABLE IF NOT EXISTS training.Stores
+(
+  StoreID INT,
+  StoreName VARCHAR(100),
+  StoreManagerID INT,
+  LocationID INT
+);
+
+
+CREATE TABLE IF NOT EXISTS training.Time
+(
+  DateId INT,
+  PK_Date TIMESTAMP,
+  Date_Name VARCHAR(100),
+  Year VARCHAR(100),
+  Year_Name VARCHAR(100),
+  Half_Year VARCHAR(100),
+  Half_Year_Name VARCHAR(100),
+  Quarter VARCHAR(100),
+  Quarter_Name VARCHAR(100),
+  Month VARCHAR(100),
+  Month_Name VARCHAR(100),
+  Day_Of_Year VARCHAR(100),
+  Day_Of_Year_Name VARCHAR(100),
+  Day_Of_Half_Year VARCHAR(100),
+  Day_Of_Half_Year_Name VARCHAR(100),
+  Day_Of_Quarter VARCHAR(100),
+  Day_Of_Quarter_Name VARCHAR(100),
+  Day_Of_Month VARCHAR(100),
+  Day_Of_Month_Name VARCHAR(100),
+  Month_Of_Year VARCHAR(100),
+  Month_Of_Year_Name VARCHAR(100),
+  Month_Of_Half_Year VARCHAR(100),
+  Month_Of_Half_Year_Name VARCHAR(100),
+  Month_Of_Quarter VARCHAR(100),
+  Month_Of_Quarter_Name VARCHAR(100),
+  Quarter_Of_Year VARCHAR(100),
+  Quarter_Of_Year_Name VARCHAR(100),
+  Quarter_Of_Half_Year VARCHAR(100),
+  Quarter_Of_Half_Year_Name VARCHAR(100),
+  Half_Year_Of_Year VARCHAR(100),
+  Half_Year_Of_Year_Name VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS training.Employees
+(
+  EmployeeID INT,
+  FullName VARCHAR(500),
+  FirstName VARCHAR(100),
+  MiddleName VARCHAR(100),
+  LastName VARCHAR(100),
+  ManagerID INT
+);
+

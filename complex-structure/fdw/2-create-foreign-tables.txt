@@ -1,0 +1,188 @@
+CREATE FOREIGN TABLE IF NOT EXISTS Customers
+(
+  CustomerID INT,
+  FName VARCHAR(100),
+  MName VARCHAR(100),
+  LName VARCHAR(100),
+  LocationID INT,
+  CreditLimit INT,
+  ActiveStatus BOOLEAN
+)
+SERVER bigquery_serverv2
+OPTIONS
+(
+	table 'Customers',
+    location 'US'
+);
+
+CREATE FOREIGN TABLE IF NOT EXISTS FactSales
+(
+  SaleID VARCHAR(100),
+  SaleDate INT,
+  CustomerID INT,
+  EmployeeID INT,
+  StoreID INT,
+  ProductID INT,
+  Units INT,
+  SaleAmount INT,
+  SalesReasonID INT,
+  ProductCost INT
+)
+SERVER bigquery_serverv2
+OPTIONS
+(
+	table 'FactSales',
+    location 'US'
+);
+
+
+CREATE FOREIGN TABLE IF NOT EXISTS Locations
+(
+  LocationID INT,
+  AddressLine1 VARCHAR(100),
+  AddressLine2 VARCHAR(100),
+  City VARCHAR(100),
+  State VARCHAR(100),
+  Country VARCHAR(100),
+  Zip VARCHAR(100),
+  Region VARCHAR(100)
+)
+SERVER bigquery_serverv2
+OPTIONS
+(
+	table 'Locations',
+    location 'US'
+);
+
+
+CREATE FOREIGN TABLE ProductCategories
+(
+  ProductCategoryID INT,
+  ProductCategoryName VARCHAR(100)
+)
+SERVER bigquery_serverv2
+OPTIONS
+(
+	table 'ProductCategories',
+    location 'US'
+);
+
+
+CREATE FOREIGN TABLE IF NOT EXISTS Products
+(
+  ProductID INT,
+  Name VARCHAR(100),
+  ProductNumber VARCHAR(100),
+  ProductSubcategoryID INT,
+  Color VARCHAR(100),
+  Size VARCHAR(100),
+  StockLevel INT,
+  Supplier VARCHAR(100)
+)
+SERVER bigquery_serverv2
+OPTIONS
+(
+	table 'Products',
+    location 'US'
+);
+
+
+CREATE FOREIGN TABLE IF NOT EXISTS ProductSubcategories
+(
+  ProductSubcategoryID INT,
+  ProductCategoryID INT,
+  ProductSubcategoryName VARCHAR(100)
+)
+SERVER bigquery_serverv2
+OPTIONS
+(
+	table 'ProductSubcategories',
+    location 'US'
+);
+
+
+CREATE FOREIGN TABLE IF NOT EXISTS SalesReasons
+(
+  SalesReasonID INT,
+  SalesReasonName VARCHAR(100),
+  SalesReasonType VARCHAR(100)
+)
+SERVER bigquery_serverv2
+OPTIONS
+(
+	table 'SalesReasons',
+    location 'US'
+);
+
+
+CREATE FOREIGN TABLE IF NOT EXISTS Stores
+(
+  StoreID INT,
+  StoreName VARCHAR(100),
+  StoreManagerID INT,
+  LocationID INT
+)
+SERVER bigquery_serverv2
+OPTIONS
+(
+	table 'Stores',
+    location 'US'
+);
+
+
+CREATE FOREIGN TABLE IF NOT EXISTS Time
+(
+  DateId INT,
+  PK_Date TIMESTAMP,
+  Date_Name VARCHAR(100),
+  Year VARCHAR(100),
+  Year_Name VARCHAR(100),
+  Half_Year VARCHAR(100),
+  Half_Year_Name VARCHAR(100),
+  Quarter VARCHAR(100),
+  Quarter_Name VARCHAR(100),
+  Month VARCHAR(100),
+  Month_Name VARCHAR(100),
+  Day_Of_Year VARCHAR(100),
+  Day_Of_Year_Name VARCHAR(100),
+  Day_Of_Half_Year VARCHAR(100),
+  Day_Of_Half_Year_Name VARCHAR(100),
+  Day_Of_Quarter VARCHAR(100),
+  Day_Of_Quarter_Name VARCHAR(100),
+  Day_Of_Month VARCHAR(100),
+  Day_Of_Month_Name VARCHAR(100),
+  Month_Of_Year VARCHAR(100),
+  Month_Of_Year_Name VARCHAR(100),
+  Month_Of_Half_Year VARCHAR(100),
+  Month_Of_Half_Year_Name VARCHAR(100),
+  Month_Of_Quarter VARCHAR(100),
+  Month_Of_Quarter_Name VARCHAR(100),
+  Quarter_Of_Year VARCHAR(100),
+  Quarter_Of_Year_Name VARCHAR(100),
+  Quarter_Of_Half_Year VARCHAR(100),
+  Quarter_Of_Half_Year_Name VARCHAR(100),
+  Half_Year_Of_Year VARCHAR(100),
+  Half_Year_Of_Year_Name VARCHAR(100)
+)
+SERVER bigquery_serverv2
+OPTIONS
+(
+	table 'Time',
+    location 'US'
+);
+
+
+CREATE FOREIGN TABLE IF NOT EXISTS Employees
+(
+  EmployeeID INT,
+  FName VARCHAR(100),
+  MName VARCHAR(100),
+  LName VARCHAR(100),
+  ManagerID INT
+)
+SERVER bigquery_serverv2
+OPTIONS
+(
+	table 'Employees',
+    location 'US'
+);

@@ -1,0 +1,41 @@
+CREATE VIEW IF NOT EXISTS `atscale-project.atscale_training_dataset`.vwCustomers
+AS
+(
+  SELECT CustomerID AS CustomerID,
+    CONCAT(fname, " ", mname, " ", lname) AS FullName,
+    FName AS FirstName,
+    MName AS MiddleName,
+    LName AS LastName,
+    LocationID AS LocationID,
+    CreditLimit AS CreditLimit,
+    ActiveStatus AS ActiveStatus,
+    `atscale-project.atscale_training_dataset`.getCustomerStatus(ActiveStatus) AS CustomerStatus,
+    `atscale-project.atscale_training_dataset`.getCustomerType(CreditLimit) AS CustomerType
+  FROM `atscale-project.atscale_training_dataset`.Customers
+);
+
+CREATE VIEW IF NOT EXISTS `atscale-project.atscale_training_dataset`.vwEmployees
+AS
+(
+  SELECT EmployeeID AS EmployeeID,
+    CONCAT(fname, " ", mname, " ", lname) AS FullName,
+    FName AS FirstName,
+    MName AS MiddleName,
+    LName AS LastName,
+    ManagerID AS ManagerID
+  FROM `atscale-project.atscale_training_dataset`.Employees
+);
+
+CREATE VIEW IF NOT EXISTS `atscale-project.atscale_training_dataset`.vwLocations
+AS
+(
+  SELECT LocationID AS LocationID,
+    AddressLine1 AS AddressLine1,
+    AddressLine2 AS AddressLine2,
+    City AS City,
+    State AS State,
+    Country AS Country,
+    Zip AS Zip,
+    `atscale-project.atscale_training_dataset`.getCustomerRegion(City) AS Region
+  FROM `atscale-project.atscale_training_dataset`.Locations
+);

@@ -1,0 +1,59 @@
+CREATE VIEW vwCustomers
+AS
+(
+SELECT * FROM Customers
+);
+
+CREATE VIEW vwFactSales
+AS
+(
+SELECT * FROM FactSales
+);
+
+CREATE VIEW vwLocations
+AS
+(
+SELECT * FROM Locations
+);
+
+CREATE VIEW vwProductCategories
+AS
+(
+SELECT * FROM ProductCategories
+);
+
+CREATE VIEW vwProducts
+AS
+(
+SELECT * FROM Products
+);
+
+CREATE VIEW vwProductSubcategories
+AS
+(
+SELECT * FROM ProductSubcategories
+);
+
+CREATE VIEW vwSalesReasons
+AS
+(
+SELECT * FROM SalesReasons
+);
+
+CREATE VIEW vwStores
+AS
+(
+SELECT * FROM Stores
+);
+
+CREATE VIEW vwTime
+AS
+(
+SELECT * FROM Time
+);
+
+CREATE VIEW vwEmployees
+AS
+(
+SELECT * FROM Employees
+);

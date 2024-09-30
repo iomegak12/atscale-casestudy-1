@@ -1,0 +1,78 @@
+  - version: commit:65d16a368a9dcf72bd2bc77428666bb6ccb884c1
+    name: model-reuse
+    url: https://github.com/ramkumar-palmeto/model-reuse
+    branch: main
+	
+	
+unique_name: state_map_row_security
+object_type: row_security
+label: state_map_row_security
+dataset: state_map
+filter_key_column: state
+id_type: user
+ids_column: username
+scope: all
+secure_totals: true
+use_filter_key: true
+
+
+relationships:
+  - from:
+      dataset: vwproducts
+      join_columns:
+        - productsubcategoryid
+    to:
+      level: Subcategory
+    type: snowflake
+  - from:
+      dataset: vwproductsubcategories
+      join_columns:
+        - productcategoryid
+    to:
+      level: Category
+    type: snowflake
+
+1. Period-over-period growth for sales amounts
+	
+	([Time].[CY Time].CurrentMember.PrevMember, [Measures].[TotalSaleAmount])
+
+
+
+
+([Time].[CY Time].CurrentMember, [Measures].[TotalSaleAmount])
+	-
+([Time].[CY Time].CurrentMember.PrevMember, [Measures].[TotalSaleAmount])
+  
+$#,##0.00
+	
+	
+2. Sales growth year-over-year
+	
+(ParallelPeriod(
+   [Time].[CY Time].[CY Year],
+   1,
+   [Time].[CY Time].CurrentMember),
+   [Measures].[TotalSaleAmount]
+   )
+   
+   
+   
+([Time].[CY Time].CurrentMember, [Measures].[TotalSaleAmount])
+-
+[Measures].[PreviousYearSalesAmount]   
+
+
+
+
+
+
+3. Daily sales compared to 30-period moving average
+
+Avg(
+  [Time].[CY Time].CurrentMember.Lag(29)
+  :
+  [Time].[CY Time].CurrentMember,
+  [Measures].[TotalSaleAmount]
+  )
+  
+ 

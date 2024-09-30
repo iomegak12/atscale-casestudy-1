@@ -1,0 +1,8 @@
+CREATE TABLE training.state_map (State VARCHAR(10), username VARCHAR(100));
+
+INSERT INTO training.state_map (state, username) VALUES ('AP', 'admin');
+INSERT INTO training.state_map (state, username) VALUES ('TN', 'admin');
+INSERT INTO training.state_map (state, username) VALUES ('KA', 'admin');
+INSERT INTO training.state_map (state, username) VALUES ('AP', 'user1');
+
+SELECT * FROM training.state_map
