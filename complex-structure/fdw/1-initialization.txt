@@ -7,7 +7,7 @@ CREATE FOREIGN DATA WRAPPER bigquery_wrapper
 CREATE SERVER bigquery_server
   FOREIGN DATA WRAPPER bigquery_wrapper
   OPTIONS (
-    sa_key 'GCP-Service Account-JSON-CONTENT',
+    sa_key '',
     project_id 'atscale-project',
     dataset_id 'practice_dataset'
   );
